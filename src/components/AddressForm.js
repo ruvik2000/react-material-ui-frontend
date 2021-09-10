@@ -6,64 +6,51 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 
 export default function AddressForm(props) {
+  React.useEffect(() => {
+    console.log("gooo", props.updateState)
+  }, [])
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
-        Register your self for the raffle draw
+        {props.isUpdate? "Update a product" : "Add a product"}
       </Typography>
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <TextField variant="outlined" onChange={props.handleChange}
             required
-            id="fullName"
-            name="fullName"
+            id="product_name"
+            name="product_name"
+            value= {props.updateState? props.updateState.product_name : null}
             // helperText="Incorrect entry."
-            label="Full Name"
+            label="Product Name"
             fullWidth
             autoComplete="given-name"
           />
         </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField variant="outlined" onChange={props.handleChange}
-            required
-            id="email"
-            name="email"
-            // helperText="Incorrect entry."
-            label="Email"
-            fullWidth
-            autoComplete="family-name"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField variant="outlined" onChange={props.handleChange}
-            required
-            id="contactNumber"
-            name="contactNumber"
-            // helperText="Incorrect entry."
-            label="Contact Number"
-            fullWidth
-            autoComplete="family-name"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-            <TextField variant="outlined" onChange={props.handleChange}
-                required
-                id="nic"
-                name="nic"
-                // helperText="Incorrect entry."
-                label="NIC"
-                fullWidth
-            />
-        </Grid>
         <Grid item xs={12}>
           <TextField variant="outlined" onChange={props.handleChange}
             required
-            id="address"
-            name="address"
+            id="category"
+            name="category"
             // helperText="Incorrect entry."
-            label="Address"
+            value= {props.updateState? props.updateState.category : null}
+            label="Category"
             fullWidth
+            autoComplete="given-name"
           />
+        </Grid>
+        <Grid item xs={12}>
+            <TextField variant="outlined" onChange={props.handleChange}
+                required
+                id="description"
+                name="description"
+                // helperText="Incorrect entry."
+                value= {props.updateState? props.updateState.description : null}
+                label="Description"
+                fullWidth
+                multiline
+                rows={4}
+            />
         </Grid>
       </Grid>
     </React.Fragment>
